@@ -7,6 +7,7 @@ function Target(posx, posy) {
         noStroke();
         fill(255, 0, 0);
         ellipse(this.pos.x, this.pos.y, 10);
+        
         fill(255);
     }
 }
