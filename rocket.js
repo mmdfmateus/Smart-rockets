@@ -3,6 +3,7 @@ function Rocket() {
     this.vel = p5.Vector.random2D();
     this.acc = new createVector();
     this.dna = new DNA();
+    this.fitness = 0;
     this.count = 0;
 
 
@@ -32,6 +33,8 @@ function Rocket() {
     this.calculateFitness = function () {
         var d = dist(this.pos.x, this.pos.y, target.pos.x, target.pos.y);
 
-        return d;
+        this.fitness = 1/d;
+        console.log("distance: " + d + "\nfitness: " + this.fitness + "\n\n");
+        return this.fitness;
     }
 }
