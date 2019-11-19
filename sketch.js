@@ -3,15 +3,13 @@ var population;
 var target;
 var count = 0;
 var lifespan = 300;
-var popMaxFit;
+var popMaxFit = 0;
 
 function setup() {
     createCanvas(450, 500);
-    rocket = new Rocket();
-    target = new Target(width / 2, 20);
+    target = new Target(width / 2, 30);
     population = new Population();
-    population.initialize(20);
-    popMaxFit = 0;
+    population.initialize(10);
 }
 
 function draw() {
@@ -19,7 +17,7 @@ function draw() {
     target.draw();
     textAlign(CENTER, TOP);
 
-    text(popMaxFit, width - 20, 10);
+    text(`max fitness: ${popMaxFit}`, width - 50, 10);
     count++;
     if (count == lifespan) {
         count = 0;
@@ -29,9 +27,6 @@ function draw() {
         population.initialize(population.size);
     }
     
-
-    rocket.update();
-    rocket.show();
     population.run();
 }
 
@@ -40,5 +35,15 @@ function normalize(array, maxValue) {
         console.log("old: " + array[i].fitness);
         array[i].fitness = array[i].fitness * 100 / maxValue;
         console.log("\nnew: " + array[i].fitness + "\n\n");
+    }
+}
+
+function keyPressed(){
+    if(keyCode == LEFT_ARROW){
+        noLoop();
+        return;
+    }if(keyCode == RIGHT_ARROW){
+        loop();
+        return;
     }
 }
