@@ -22,4 +22,13 @@ function DNA(genes) {
         }
         return new DNA(genes);
     }
+
+    this.mutation = function() {
+        for (var i = 0; i < this.genes.length; i++) {
+          if (random(1) < 0.03) {
+            this.genes[i] = p5.Vector.random2D();
+            this.genes[i].setMag(maxForce);
+          }
+        }
+      }
 }

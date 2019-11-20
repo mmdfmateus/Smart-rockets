@@ -32,28 +32,52 @@ function Population() {
             }
         }
 
-        normalize(this.rockets, this.maxFit);
-        this.maxFit *= 100;
+        // this.rockets = this.normalizeFitness(this.rockets, this.maxFit);
+        for (var i = 0; i < this.size; i++) {
+            this.rockets[i].fitness /= this.maxFit;
+        }
+        console.log(`maxfit: ${this.maxFit}`);
+        // this.maxFit *= 100;
     }
 
     this.setMatingPool = function () {
         this.matingPool = [];
 
         for (var i = 0; i < this.size; i++) {
-            var count = this.rockets[i].fitness;
+            var count = this.rockets[i].fitness * 100;
             for (var j = 0; j < count; j++) {
                 this.matingPool.push(this.rockets[i]);
             }
         }
+
+        console.log(this.matingPool);
     }
 
-    this.naturalSelection = function () {
-        var parentA = random(this.matingPool);
-        var parentB = random(this.matingPool);
-        console.log(this.matingPool);
-        console.log(parentA);
+    this.naturalSelection = function (crossoverRate) {
+        var newRockets = [];
+        for(var i = 0; i < this.rockets.length; i++){
 
-        var newDna = parentA.dna.crossover(parentB.dna);
-        console.log(newDna.genes);
+            var parentA = random(this.matingPool);
+            var parentB = random(this.matingPool);
+            // console.log(this.matingPool);
+            // console.log(parentA);
+            
+            var newDna = parentA.dna.crossover(parentB.dna);
+            newDna.mutation();
+
+            newRockets[i] = new Rocket(newDna);
+        }
+
+        this.rockets = newRockets
+    }
+
+    this.normalizeFitness = function(array, maxValue) {
+        console.log(maxValue);
+        for (var i = 0; i < array.length; i++) {
+            console.log("old: " + array[i].fitness);
+            array[i].normalizedFitness = array[i].fitness * 100 / maxValue;
+            console.log("\tnew: " + array[i].normalizedFitness + "\n\n");
+        }
+        return array;
     }
 }
