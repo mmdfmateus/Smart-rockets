@@ -34,14 +34,14 @@ function DNA(genes) {
           }
         }
         // Gives DNA object an array
-        return new DNA(newgenes);
+        return new DNA(newgenes, mutationRate);
       }
     
       // Adds random mutation to the genes to add variance.
-      this.mutation = function() {
+      this.mutation = function(mutationRate) {
         for (var i = 0; i < this.genes.length; i++) {
           // if random number less than 0.01, new gene is then random vector
-          if (random(1) < 0.01) {
+          if (random(1) < mutationRate) {
             this.genes[i] = p5.Vector.random2D();
             this.genes[i].setMag(maxforce);
           }

@@ -52,7 +52,7 @@ function Population(initialPop) {
           var parentB = random(this.matingpool).dna;
           // Creates child by using crossover function
           var child = parentA.crossover(parentB);
-          child.mutation();
+          child.mutation(mutationRate);
           // Creates new rocket with child dna
           newRockets[i] = new Rocket(child);
         }

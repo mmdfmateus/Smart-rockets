@@ -23,22 +23,27 @@ var rh = 10;
 
 var initialPop = 50;
 var velMul = 0.5;
+var mutationRate = 0.01;
 
 function myFunction() {
   initialPop = document.getElementById("populationId").value;
-  population = new Population(initialPop);
+
+  mutationRate = document.getElementById("mutationRateId").value;
 
   lifespan = document.getElementById("lifespanId").value;
+  lifeP = createP();
+  population = new Population(initialPop, mutationRate);
 }
 
 
 function setup() {
   createCanvas(400, 300);
-  population = new Population(initialPop);
+  population = new Population(initialPop, mutationRate);
   lifeP = createP();
   target = createVector(width / 2, 50);
   document.getElementById("populationId").value = initialPop;
   document.getElementById("lifespanId").value = lifespan;
+  document.getElementById("mutationRateId").value = mutationRate;
 }
 
 function draw() {
