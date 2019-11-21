@@ -3,11 +3,11 @@
 // http://patreon.com/codingtrain
 // Code for: https://youtu.be/bGz7mv2vD6g
 
-function Population() {
+function Population(initialPop) {
       // Array of rockets
       this.rockets = [];
       // Amount of rockets
-      this.popsize = 100;
+      this.popsize = initialPop;
       // Amount parent rocket partners
       this.matingpool = [];
     

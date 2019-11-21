@@ -21,9 +21,16 @@ var ry = 150;
 var rw = 200;
 var rh = 10;
 
+var initialPop = 50;
+
+function myFunction() {
+  initialPop = document.getElementById("teste").value;
+  population = new Population(initialPop);
+}
+
 function setup() {
   createCanvas(400, 300);
-  population = new Population();
+  population = new Population(initialPop);
   lifeP = createP();
   target = createVector(width / 2, 50);
 
