@@ -36,6 +36,8 @@ function Population(initialPop, mutationRate) {
       lastSum = this.rockets[i].sum;
       // console.log(`${i}-sum = ${this.rockets[i].sum}`);
     }
+
+    console.log(this.rockets);
     this.matingpool = [];
     // Take rockets fitness make in to scale of 1 to 100
     // A rocket with high fitness will highly likely will be in the mating pool
@@ -72,9 +74,11 @@ function Population(initialPop, mutationRate) {
     let minimum = this.rockets[0].sum;
     let maximum = this.rockets[this.popsize - 1].sum;
     console.log(`min: ${minimum}   max: ${maximum}`);
+
+    // Get selected fathers
     for (let i = 0; i < this.popsize; i++) {
       let randomNumber = getRandomArbitrary(minimum, maximum);
-      console.log(randomNumber);
+      // console.log(randomNumber);
       selected.push(
         this.rockets.find (element => {
           if (randomNumber <= element.sum) {
@@ -84,10 +88,10 @@ function Population(initialPop, mutationRate) {
           }
         })
       );
-
     }
-    console.log(selected);
+    // console.log(selected);
 
+    // Make crossover for each rocket
     for (let i = 0; i < selected.length; i += 2) {
       let randomNumber = Math.random();
       if (randomNumber <= crossoverRate) {
@@ -99,12 +103,13 @@ function Population(initialPop, mutationRate) {
 
         selected[i] = new Rocket(firstNewDna);
         selected[i + 1] = new Rocket(secondNewDna);
-      } else {
-        selected[i].reset();
-        selected[i + 1].reset();
+      } 
+      else {
+        selected[i] = new Rocket();
+        selected[i + 1] = new Rocket();
         
-        selected[i].dna.mutation();
-        selected[i + 1].dna.mutation();
+        selected[i].dna.mutation(mutationRate);
+        selected[i + 1].dna.mutation(mutationRate);
       }
     }
 

@@ -62,10 +62,10 @@ function draw() {
   if (count == lifespan) {
     population.evaluate();
     if (selection === 'matingPool') {
-      console.log('mating pool')
+      // console.log('mating pool')
       population.selection();
     } else if (selection === 'roleta') {
-      console.log('roleta')
+      // console.log('roleta')
       population.rouletteSelection();
     }
     // Population = new Population();
