@@ -23,6 +23,7 @@ function DNA(genes) {
         var newgenes = [];
         // Picks random midpoint
         var mid = floor(random(this.genes.length));
+        // console.log(mid)
         for (var i = 0; i < this.genes.length; i++) {
           // If i is greater than mid the new gene should come from this partner
           if (i > mid) {

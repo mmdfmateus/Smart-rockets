@@ -22,6 +22,13 @@
     <input type="number" id="lifespanId" name="lifespanName" value="lifespanValue">
     <p style="margin-bottom: 0;">Insira a taxa de mutação</p>
     <input type="number" id="mutationRateId" name="mutationRateName" value="mutationRateValue">
+    <p style="margin-bottom: 0;">Insira a taxa de cruzamento (apenas para a roleta)</p>
+    <input type="number" id="crossoverRateId" name="crossoverRateName" value="crossoverRateValue">
+    <p style="margin-bottom: 0;">Selecione o método seleção</p>
+    <select id="selectionId">
+      <option value="roleta">Roleta</option>
+      <option value="matingPool">Mating Pool</option>
+    </select>
   </form>
   <div>
     <input type="button" value="Submit" onclick="myFunction()">

@@ -36,8 +36,6 @@ function Population(initialPop, mutationRate) {
       lastSum = this.rockets[i].sum;
       // console.log(`${i}-sum = ${this.rockets[i].sum}`);
     }
-    console.log('teste');
-    console.log(this.rockets);
     this.matingpool = [];
     // Take rockets fitness make in to scale of 1 to 100
     // A rocket with high fitness will highly likely will be in the mating pool

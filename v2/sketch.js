@@ -24,6 +24,8 @@ var rh = 10;
 var initialPop = 50;
 var velMul = 0.5;
 var mutationRate = 0.01;
+var crossoverRate = 0.7;
+var selection = 'matingPool';
 
 function myFunction() {
   initialPop = document.getElementById("populationId").value;
@@ -31,7 +33,9 @@ function myFunction() {
   mutationRate = document.getElementById("mutationRateId").value;
 
   lifespan = document.getElementById("lifespanId").value;
-  lifeP = createP();
+
+  selection = document.getElementById("selectionId").value;
+
   population = new Population(initialPop, mutationRate);
 }
 
@@ -44,6 +48,8 @@ function setup() {
   document.getElementById("populationId").value = initialPop;
   document.getElementById("lifespanId").value = lifespan;
   document.getElementById("mutationRateId").value = mutationRate;
+  document.getElementById("crossoverRateId").value = crossoverRate;
+  document.getElementById("selectionId").value = selection;
 }
 
 function draw() {
@@ -55,8 +61,13 @@ function draw() {
   count++;
   if (count == lifespan) {
     population.evaluate();
-    population.selection();
-    // population.rouletteSelection();
+    if (selection === 'matingPool') {
+      console.log('mating pool')
+      population.selection();
+    } else if (selection === 'roleta') {
+      console.log('roleta')
+      population.rouletteSelection();
+    }
     // Population = new Population();
     count = 0;
   }
