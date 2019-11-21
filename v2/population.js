@@ -48,6 +48,8 @@ function Population(initialPop) {
       }
     }
   }
+
+
   // Selects appropriate genes for child
   this.selection = function () {
     var newRockets = [];
@@ -71,11 +73,13 @@ function Population(initialPop) {
     let selected = [];
     let minimum = this.rockets[0].sum;
     let maximum = this.rockets[this.popsize - 1].sum;
+    console.log(`min: ${minimum}   max: ${maximum}`);
     for (let i = 0; i < this.popsize; i++) {
-      let ramdomNumber = getRandomArbitrary(minimum, maximum);
+      let randomNumber = getRandomArbitrary(minimum, maximum);
+      console.log(randomNumber);
       selected.push(
         this.rockets.find (element => {
-          if (ramdomNumber < element.sum) {
+          if (randomNumber <= element.sum) {
             return true;
           } else {
             return false;
@@ -84,6 +88,7 @@ function Population(initialPop) {
       );
     
     }
+    console.log(selected);
 
     for(let i = 0; i < selected.length; i += 2) {
       let randomNumber = Math.random();
@@ -96,12 +101,16 @@ function Population(initialPop) {
 
         selected[i] = new Rocket(firstNewDna);
         selected[i + 1] = new Rocket(secondNewDna);
+      } else {
+        selected[i].reset();
+        selected[i + 1].reset();
+        
+        selected[i].dna.mutation();
+        selected[i + 1].dna.mutation();
       }
     }
 
-    console.log(selected);
     this.rockets = selected;
-    return selected;
   }
 
   // function to get Random numbers between two numbers

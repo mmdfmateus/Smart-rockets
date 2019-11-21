@@ -40,8 +40,8 @@ function DNA(genes) {
       // Adds random mutation to the genes to add variance.
       this.mutation = function() {
         for (var i = 0; i < this.genes.length; i++) {
-          // if random number less than 0.01, new gene is then random vector
-          if (random(1) < 0.01) {
+          // if random number less than 0.03, new gene is then random vector
+          if (random(1) < 0.1) {
             this.genes[i] = p5.Vector.random2D();
             this.genes[i].setMag(maxforce);
           }

@@ -23,10 +23,12 @@ var rh = 10;
 
 var initialPop = 50;
 var velMul = 0.5;
+var crossoverRate = 0.4;
 
 function myFunction() {
   initialPop = document.getElementById("populationId").value;
   population = new Population(initialPop);
+  count = 0;
 
   lifespan = document.getElementById("lifespanId").value;
 }
@@ -50,9 +52,8 @@ function draw() {
   count++;
   if (count == lifespan) {
     population.evaluate();
-    population.selection();
-    // population.rouletteSelection();
-    // Population = new Population();
+    // population.selection();
+    population.rouletteSelection(crossoverRate);
     count = 0;
   }
   // Renders barrier for rockets
