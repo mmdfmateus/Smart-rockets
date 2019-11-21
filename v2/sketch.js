@@ -5,7 +5,7 @@
 
 var population;
 // Each rocket is alive till 400 frames
-var lifespan = 400;
+var lifespan = 100;
 // Made to display count on screen
 var lifeP;
 // Keeps track of frames
