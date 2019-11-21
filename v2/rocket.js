@@ -47,31 +47,11 @@ function Rocket(dna) {
       this.update = function() {
         // Checks distance from rocket to target
         var d = dist(this.pos.x, this.pos.y, target.x, target.y);
-        
-        this.checkIfReachedTarget(d);
-
-        this.checkIfCrashed();
-    
-        //applies the random vectors defined in dna to consecutive frames of rocket
-        this.applyForce(this.dna.genes[count]);
-        // if rocket has not got to goal and not crashed then update physics engine
-        if (!this.completed && !this.crashed) {
-          this.vel.add(this.acc);
-          this.pos.add(this.vel);
-          this.acc.mult(1);
-          this.vel.limit(4);
-        }
-      }
-
-      this.checkIfReachedTarget = function(distance){
-        if (distance < 10) {
+        // If distance less than 10 pixels, then it has reached target
+        if (d < 10) {
           this.completed = true;
           this.pos = target.copy();
         }
-        return this.completed;
-      }
-
-      this.checkIfCrashed = function(){
         // Rocket hit the barrier
         if (this.pos.x > rx && this.pos.x < rx + rw && this.pos.y > ry && this.pos.y < ry + rh) {
           this.crashed = true;
@@ -84,22 +64,25 @@ function Rocket(dna) {
         if (this.pos.y > height || this.pos.y < 0) {
           this.crashed = true;
         }
-        return this.crashed;
+    
+    
+        //applies the random vectors defined in dna to consecutive frames of rocket
+        this.applyForce(this.dna.genes[count]);
+        // if rocket has not got to goal and not crashed then update physics engine
+        if (!this.completed && !this.crashed) {
+          this.vel.add(this.acc);
+          this.pos.add(this.vel);
+          this.acc.mult(1);
+          this.vel.limit(4);
+        }
       }
-
       // displays rocket to window
       this.show = function() {
         // push and pop allow's rotating and translation not to affect other objects
         push();
         //color customization of rockets
         noStroke();
-        if(this.completed){
-          fill(0, 255, 0);
-        } else if(this.crashed){
-          fill(255, 0, 0);
-        } else {
-          fill(255, 150);
-        }
+        fill(255, 150);
         //translate to the postion of rocket
         translate(this.pos.x, this.pos.y);
         //rotatates to the angle the rocket is pointing
