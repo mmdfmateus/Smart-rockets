@@ -4,7 +4,7 @@
 // Code for: https://youtu.be/bGz7mv2vD6g
 
 // Constructor function
-function Rocket(dna) {
+function Rocket(dna, mutationRate) {
   // Physics of rocket at current instance
   this.pos = createVector(width / 2, height);
   this.vel = createVector();
@@ -17,7 +17,7 @@ function Rocket(dna) {
   if (dna) {
     this.dna = dna;
   } else {
-    this.dna = new DNA();
+    this.dna = new DNA(undefined, mutationRate);
   }
   this.fitness = 0;
   this.sum = 0;

@@ -23,6 +23,7 @@ function DNA(genes) {
         var newgenes = [];
         // Picks random midpoint
         var mid = floor(random(this.genes.length));
+        // console.log(mid)
         for (var i = 0; i < this.genes.length; i++) {
           // If i is greater than mid the new gene should come from this partner
           if (i > mid) {
@@ -34,14 +35,14 @@ function DNA(genes) {
           }
         }
         // Gives DNA object an array
-        return new DNA(newgenes);
+        return new DNA(newgenes, mutationRate);
       }
     
       // Adds random mutation to the genes to add variance.
-      this.mutation = function() {
+      this.mutation = function(mutationRate) {
         for (var i = 0; i < this.genes.length; i++) {
-          // if random number less than 0.03, new gene is then random vector
-          if (random(1) < 0.1) {
+          // if random number less than 0.01, new gene is then random vector
+          if (random(1) < mutationRate) {
             this.genes[i] = p5.Vector.random2D();
             this.genes[i].setMag(maxforce);
           }

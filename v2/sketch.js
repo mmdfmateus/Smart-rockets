@@ -23,24 +23,33 @@ var rh = 10;
 
 var initialPop = 50;
 var velMul = 0.5;
-var crossoverRate = 0.4;
+var mutationRate = 0.01;
+var crossoverRate = 0.7;
+var selection = 'matingPool';
 
 function myFunction() {
   initialPop = document.getElementById("populationId").value;
-  population = new Population(initialPop);
-  count = 0;
+
+  mutationRate = document.getElementById("mutationRateId").value;
 
   lifespan = document.getElementById("lifespanId").value;
+
+  selection = document.getElementById("selectionId").value;
+
+  population = new Population(initialPop, mutationRate);
 }
 
 
 function setup() {
   createCanvas(400, 300);
-  population = new Population(initialPop);
+  population = new Population(initialPop, mutationRate);
   lifeP = createP();
   target = createVector(width / 2, 50);
   document.getElementById("populationId").value = initialPop;
   document.getElementById("lifespanId").value = lifespan;
+  document.getElementById("mutationRateId").value = mutationRate;
+  document.getElementById("crossoverRateId").value = crossoverRate;
+  document.getElementById("selectionId").value = selection;
 }
 
 function draw() {
@@ -52,8 +61,14 @@ function draw() {
   count++;
   if (count == lifespan) {
     population.evaluate();
-    // population.selection();
-    population.rouletteSelection(crossoverRate);
+    if (selection === 'matingPool') {
+      console.log('mating pool')
+      population.selection();
+    } else if (selection === 'roleta') {
+      console.log('roleta')
+      population.rouletteSelection();
+    }
+    // Population = new Population();
     count = 0;
   }
   // Renders barrier for rockets

@@ -3,7 +3,7 @@
 // http://patreon.com/codingtrain
 // Code for: https://youtu.be/bGz7mv2vD6g
 
-function Population(initialPop) {
+function Population(initialPop, mutationRate) {
   // Array of rockets
   this.rockets = [];
   // Amount of rockets
@@ -28,7 +28,6 @@ function Population(initialPop) {
         maxfit = this.rockets[i].fitness;
       }
     }
-    
     var lastSum = 0;
     // Normalises fitnesses
     for (var i = 0; i < this.popsize; i++) {
@@ -37,7 +36,6 @@ function Population(initialPop) {
       lastSum = this.rockets[i].sum;
       // console.log(`${i}-sum = ${this.rockets[i].sum}`);
     }
-
     this.matingpool = [];
     // Take rockets fitness make in to scale of 1 to 100
     // A rocket with high fitness will highly likely will be in the mating pool
@@ -47,25 +45,25 @@ function Population(initialPop) {
         this.matingpool.push(this.rockets[i]);
       }
     }
-  }
 
-
-  // Selects appropriate genes for child
-  this.selection = function () {
-    var newRockets = [];
-    for (var i = 0; i < this.rockets.length; i++) {
-      // Picks random dna
-      var parentA = random(this.matingpool).dna;
-      var parentB = random(this.matingpool).dna;
-      // Creates child by using crossover function
-      var child = parentA.crossover(parentB);
-      child.mutation();
-      // Creates new rocket with child dna
-      newRockets[i] = new Rocket(child);
+    // Selects appropriate genes for child
+    this.selection = function () {
+      var newRockets = [];
+      for (var i = 0; i < this.rockets.length; i++) {
+        // Picks random dna
+        var parentA = random(this.matingpool).dna;
+        var parentB = random(this.matingpool).dna;
+        // Creates child by using crossover function
+        var child = parentA.crossover(parentB);
+        child.mutation(mutationRate);
+        // Creates new rocket with child dna
+        newRockets[i] = new Rocket(child);
+      }
+      // This instance of rockets are the new rockets
+      this.rockets = newRockets;
     }
-    // This instance of rockets are the new rockets
-    this.rockets = newRockets;
   }
+
 
 
   // Roulette selection
@@ -86,18 +84,18 @@ function Population(initialPop) {
           }
         })
       );
-    
+
     }
     console.log(selected);
 
-    for(let i = 0; i < selected.length; i += 2) {
+    for (let i = 0; i < selected.length; i += 2) {
       let randomNumber = Math.random();
-      if(randomNumber <= crossoverRate){
+      if (randomNumber <= crossoverRate) {
         let firstNewDna = selected[i].dna.crossover(selected[i + 1].dna);
         let secondNewDna = selected[i + 1].dna.crossover(selected[i].dna);
 
-        firstNewDna.mutation();
-        secondNewDna.mutation();
+        firstNewDna.mutation(mutationRate);
+        secondNewDna.mutation(mutationRate);
 
         selected[i] = new Rocket(firstNewDna);
         selected[i + 1] = new Rocket(secondNewDna);
