@@ -22,18 +22,23 @@ var rw = 200;
 var rh = 10;
 
 var initialPop = 50;
+var velMul = 0.5;
 
 function myFunction() {
-  initialPop = document.getElementById("teste").value;
+  initialPop = document.getElementById("populationId").value;
   population = new Population(initialPop);
+
+  lifespan = document.getElementById("lifespanId").value;
 }
+
 
 function setup() {
   createCanvas(400, 300);
   population = new Population(initialPop);
   lifeP = createP();
   target = createVector(width / 2, 50);
-
+  document.getElementById("populationId").value = initialPop;
+  document.getElementById("lifespanId").value = lifespan;
 }
 
 function draw() {
