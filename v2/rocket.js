@@ -20,6 +20,7 @@ function Rocket(dna, mutationRate) {
         this.dna = new DNA(undefined, mutationRate);
       }
       this.fitness = 0;
+      this.sum = 0;
     
       // Object can recieve force and add to acceleration
       this.applyForce = function(force) {
@@ -81,7 +82,14 @@ function Rocket(dna, mutationRate) {
         push();
         //color customization of rockets
         noStroke();
-        fill(255, 150);
+
+        if(this.completed){
+          fill(0, 255, 0);
+        } else if(this.crashed){
+          fill(255, 0, 0);
+        } else{
+          fill(255, 150);
+        }
         //translate to the postion of rocket
         translate(this.pos.x, this.pos.y);
         //rotatates to the angle the rocket is pointing
