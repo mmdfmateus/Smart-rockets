@@ -1,9 +1,3 @@
-// Daniel Shiffman
-// http://codingtra.in
-// http://patreon.com/codingtrain
-// Code for: https://youtu.be/bGz7mv2vD6g
-
-// Constructor function
 function Rocket(dna, mutationRate) {
   // Physics of rocket at current instance
   this.pos = createVector(width / 2, height);

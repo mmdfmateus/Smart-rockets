@@ -1,9 +1,6 @@
-// Daniel Shiffman
-// http://codingtra.in
-// http://patreon.com/codingtrain
-// Code for: https://youtu.be/bGz7mv2vD6g
+function DNA(genes, mutationRate) {
+      this.mutationRate = mutationRate;
 
-function DNA(genes) {
       // Recieves genes and create a dna object
       if (genes) {
         this.genes = genes;
@@ -35,7 +32,7 @@ function DNA(genes) {
           }
         }
         // Gives DNA object an array
-        return new DNA(newgenes, mutationRate);
+        return new DNA(newgenes, this.mutationRate);
       }
     
       // Adds random mutation to the genes to add variance.

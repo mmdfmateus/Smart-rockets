@@ -1,8 +1,3 @@
-// Daniel Shiffman
-// http://codingtra.in
-// http://patreon.com/codingtrain
-// Code for: https://youtu.be/bGz7mv2vD6g
-
 var population;
 // Each rocket is alive till 400 frames
 var lifespan = 100;
@@ -21,7 +16,11 @@ var ry = 150;
 var rw = 200;
 var rh = 10;
 
-var initialPop = 50;
+// Target dragging
+var targetDragging = false;
+var offsetX, offsetY;
+
+var initialPop = 250;
 var velMul = 0.5;
 var mutationRate = 0.01;
 var crossoverRate = 0.7;
@@ -36,7 +35,10 @@ function myFunction() {
 
   selection = document.getElementById("selectionId").value;
 
+  crossoverRate = document.getElementById("crossoverRateId").value;
+
   population = new Population(initialPop, mutationRate);
+  count = 0;
 }
 
 
@@ -66,7 +68,7 @@ function draw() {
       population.selection();
     } else if (selection === 'roleta') {
       // console.log('roleta')
-      population.rouletteSelection();
+      population.rouletteSelection(crossoverRate);
     }
     // Population = new Population();
     count = 0;
@@ -76,4 +78,24 @@ function draw() {
   rect(rx, ry, rw, rh);
   // Renders target
   ellipse(target.x, target.y, 16, 16);
+
+  // Adjust location if being dragged
+  if (targetDragging) {
+    target.x = mouseX + offsetX;
+    target.y = mouseY + offsetY;
+  }
+}
+
+function mousePressed() {
+  if (mouseX > target.x - 16 && mouseX < target.x + 16 && mouseY > target.y - 16 && mouseY < target.y + 16) {
+    targetDragging = true;
+    // If so, keep track of relative location of click to corner of rectangle
+    offsetX = target.x - mouseX;
+    offsetY = target.y - mouseY;
+  }
+}
+
+function mouseReleased() {
+  // Quit dragging
+  targetDragging = false;
 }
