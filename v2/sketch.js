@@ -46,6 +46,7 @@ function draw() {
   if (count == lifespan) {
     population.evaluate();
     population.selection();
+    // population.rouletteSelection();
     // Population = new Population();
     count = 0;
   }

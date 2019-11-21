@@ -20,6 +20,7 @@ function Rocket(dna) {
         this.dna = new DNA();
       }
       this.fitness = 0;
+      this.sum = 0;
     
       // Object can recieve force and add to acceleration
       this.applyForce = function(force) {
