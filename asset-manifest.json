@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/Smart-rockets/static/css/main.d1b05096.chunk.css",
+    "main.js": "/Smart-rockets/static/js/main.7673043d.chunk.js",
+    "main.js.map": "/Smart-rockets/static/js/main.7673043d.chunk.js.map",
+    "runtime-main.js": "/Smart-rockets/static/js/runtime-main.d5cd12cc.js",
+    "runtime-main.js.map": "/Smart-rockets/static/js/runtime-main.d5cd12cc.js.map",
+    "static/js/2.462ab8eb.chunk.js": "/Smart-rockets/static/js/2.462ab8eb.chunk.js",
+    "static/js/2.462ab8eb.chunk.js.map": "/Smart-rockets/static/js/2.462ab8eb.chunk.js.map",
+    "index.html": "/Smart-rockets/index.html",
+    "precache-manifest.0ae8466fe626074859c414dbac9afb98.js": "/Smart-rockets/precache-manifest.0ae8466fe626074859c414dbac9afb98.js",
+    "service-worker.js": "/Smart-rockets/service-worker.js",
+    "static/css/main.d1b05096.chunk.css.map": "/Smart-rockets/static/css/main.d1b05096.chunk.css.map",
+    "static/js/2.462ab8eb.chunk.js.LICENSE": "/Smart-rockets/static/js/2.462ab8eb.chunk.js.LICENSE",
+    "static/media/logo.svg": "/Smart-rockets/static/media/logo.5d5d9eef.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.d5cd12cc.js",
+    "static/js/2.462ab8eb.chunk.js",
+    "static/css/main.d1b05096.chunk.css",
+    "static/js/main.7673043d.chunk.js"
+  ]
+}
